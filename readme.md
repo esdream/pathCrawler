@@ -41,7 +41,7 @@ grammar_cjkRuby: true
     ```bash
     node combination.js
     ```
-5. 程序将按照数据在源文件中的行号进行编号，**由于数据源文件中首行为表头，因此第二行编号为1**。编号后进行组合并切片，按照顺序每10000对组合切片成一个文件，存储在**combination**文件夹中。切片文件名为`com+number.txt`，例如`com1.txt`。全部组合与切片完成后，程序会在控制台打印`写入完成`。
+5. 程序将按照数据在源文件中的行号进行编号，**由于数据源文件中首行为表头，因此第二行编号为1**。编号后进行组合并切片，按照顺序每10000对组合切片成一个文件，存储在**combination**文件夹中。切片文件名为`combination+number.txt`，例如`combination1.txt`。全部组合与切片完成后，程序会在控制台打印`写入完成`。
 ---
 
 ### 发送请求与存储数据
@@ -53,13 +53,13 @@ grammar_cjkRuby: true
         mode: 'walking',    // 本行修改的是请求时的交通模式，>>**重要**<<
         ...
     }
-    
+
     // 第89行
     let tranSchema = 'walking';     // 本行修改的是保存在数据中的交通模式
     ```
 1. 修改组合文件和路径结果文件。在程序**第53行**。
     ```js
-    pathAnalysis('./combination/com35.txt', './pathResult/path35.txt');
+    pathAnalysis('./combination/combination35.txt', './pathResult/path35.txt');
     ```
 2. 修改ak。在程序**第68行**。
     ```js
