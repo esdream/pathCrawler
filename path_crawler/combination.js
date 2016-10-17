@@ -54,7 +54,7 @@ let comOfCommAndHos = () => {
                 for(let j = 1; j < lengthOfHospitals; j++) {
                     if(count % 10000 === 0) {
                         let fileNum = count / 10000 + 1;
-                        let fileName = `./combination/com${fileNum}.txt`;
+                        let fileName = `./combination/combination${fileNum}.txt`;
                         // console.log(fileName);
 
                         writeStream = writeLineStream(fs.createWriteStream(fileName), {
