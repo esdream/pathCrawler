@@ -4,57 +4,57 @@ const readLineStream = require('lei-stream').readLine;
 const writeLineStream = require('lei-stream').writeLine;
 
 // 创建社区数据文件读取流
-const readStreamOfComm = readLineStream(fs.createReadStream('./dataSources/CommPt_utf8.txt'), {
+const readStreamOfOri = readLineStream(fs.createReadStream('./data_sources/CommPt_test.txt'), {
     newline: '\n',
     autoNext: false
 });
 
 // 创建医院数据文件读取流
-const readStreamOfHos = readLineStream(fs.createReadStream('./dataSources/hospital_utf8.txt'), {
+const readStreamOfDes = readLineStream(fs.createReadStream('./data_sources/hospital_test.txt'), {
     newline: '\n',
     autoNext: false
 });
 
-let comOfCommAndHos = () => {
-    let colOfCommunities = [],
-        colOfHospitals = [],
+let comOfOriAndDes = () => {
+    let colOfOrigins = [],
+        colOfDestinations = [],
         colOfCombinations = [],
         num = 0;
-    readStreamOfComm.on('data', (data) => {
+    readStreamOfOri.on('data', (data) => {
         let elements = data.split('\t');
-        let community = {
+        let origin = {
             address: elements[0],
             lng: elements[1],
             lat: elements[2]
         };
-        colOfCommunities.push(community);
-        readStreamOfComm.next();
+        colOfOrigins.push(origin);
+        readStreamOfOri.next();
     });
 
-    readStreamOfHos.on('data', (data) => {
+    readStreamOfDes.on('data', (data) => {
         let elements = data.split('\t');
-        let hospital = {
+        let destination = {
             hosName: elements[0],
-            lng: elements[2],
-            lat: elements[3]
+            lng: elements[1],
+            lat: elements[2]
         };
-        colOfHospitals.push(hospital);
-        readStreamOfHos.next();
+        colOfDestinations.push(destination);
+        readStreamOfDes.next();
     });
 
-    readStreamOfComm.on('end', () => {
-        console.log('社区数据读取完成');
-        readStreamOfHos.on('end', () => {
-            console.log('医院数据读取完成');
-            let lengthOfCommunities = colOfCommunities.length,
-                lengthOfHospitals = colOfHospitals.length,
+    readStreamOfOri.on('end', () => {
+        console.log('起点数据读取完成');
+        readStreamOfDes.on('end', () => {
+            console.log('终点数据读取完成');
+            let lengthOfOrigins = colOfOrigins.length,
+                lengthOfDestinations = colOfDestinations.length,
                 count = 0;
             let writeStream;
-            for(let i = 1; i < lengthOfCommunities; i++) {
-                for(let j = 1; j < lengthOfHospitals; j++) {
+            for(let i = 1; i < lengthOfOrigins; i++) {
+                for(let j = 1; j < lengthOfDestinations; j++) {
                     if(count % 10000 === 0) {
                         let fileNum = count / 10000 + 1;
-                        let fileName = `./combination/combination${fileNum}.txt`;
+                        let fileName = `./combination_files/combination${fileNum}.txt`;
                         // console.log(fileName);
 
                         writeStream = writeLineStream(fs.createWriteStream(fileName), {
@@ -62,7 +62,7 @@ let comOfCommAndHos = () => {
                             cacheLines: 0
                         });
                     }
-                    let combination = `${i},${j},${colOfCommunities[i].lat},${colOfCommunities[i].lng},${colOfHospitals[j].lat},${colOfHospitals[j].lng}`;
+                    let combination = `${i},${j},${colOfOrigins[i].lat},${colOfOrigins[i].lng},${colOfDestinations[j].lat},${colOfDestinations[j].lng}`;
                     let string = combination.replace(/\r/g, "");
                     // console.log(string);
 
@@ -79,4 +79,4 @@ let comOfCommAndHos = () => {
         });
     });
 };
-comOfCommAndHos();
+comOfOriAndDes();

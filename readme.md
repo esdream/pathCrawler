@@ -19,24 +19,24 @@ grammar_cjkRuby: true
 这一步骤的主要操作通过`combination.js`完成。
 1. 程序第6-10行为读取社区源文件程序。可以修改`CommPt_utf8.txt`为需要读取的社区数据文件。
     ```js
-    const readStreamOfComm = readLineStream(fs.createReadStream('./dataSources/CommPt_utf8.txt'), {
+    const readStreamOfComm = readLineStream(fs.createReadStream('./data_sources/CommPt_utf8.txt'), {
         newline: '\n',
         autoNext: false
     });
     ```
 2. 程序第12-16行为读取医院源文件程序。可以修改`hospital_utf8.txt`为需要读取的医院数据文件。
     ```js
-    const readStreamOfHos = readLineStream(fs.createReadStream('./dataSources/hospital_utf8.txt'), {
+    const readStreamOfHos = readLineStream(fs.createReadStream('./data_sources/hospital_utf8.txt'), {
         newline: '\n',
         autoNext: false
     });
     ```
 3. 社区数据和医院数据在读取时设置为逐行读取，每一行的数据读取后存储在`elements`数组中，elements数组下标n为这一行数据第n个属性值。程序第25-29行可以设置社区数据的属性下标。第37-39行可以设置医院的属性下标。对应关系如下表。
-    |程序属性|文本数据属性名|
-    |---|---|
-    |address/hosName|社区地址/医院名|
-    |lat|纬度|
-    |lng|经度|
+    | 程序属性            | 文本数据属性名  |
+    | --------------- | -------- |
+    | address/hosName | 社区地址/医院名 |
+    | lat             | 纬度       |
+    | lng             | 经度       |
 4. 在`combination.js`所在目录下右键，选择`git bash here`，打开后运行以下命令：
     ```bash
     node combination.js
@@ -57,15 +57,15 @@ grammar_cjkRuby: true
     // 第89行
     let tranSchema = 'walking';     // 本行修改的是保存在数据中的交通模式
     ```
-1. 修改组合文件和路径结果文件。在程序**第53行**。
+2. 修改组合文件和路径结果文件。在程序**第53行**。
     ```js
-    pathAnalysis('./combination/combination35.txt', './pathResult/path35.txt');
+    pathAnalysis('./combination_files/combination35.txt', './path_results/path35.txt');
     ```
-2. 修改ak。在程序**第68行**。
+3. 修改ak。在程序**第68行**。
     ```js
     ak: 'dOaspTMmxaxRBGDHFApy8pdvnvCGzuX3'
     ```
-3. 在`Read.js`所在目录下右键，选择`git bash here`，打开后运行以下命令：
+4. 在`Read.js`所在目录下右键，选择`git bash here`，打开后运行以下命令：
     ```bash
     node Read.js
     ```
@@ -75,7 +75,7 @@ grammar_cjkRuby: true
     [SyntaxError: Unexpected token ILLEGAL]
     [SyntaxError: Unexpected token )]
     ```
-4. 将 **`.\pathResult`** 文件夹中的结果文件**备份**。
-5. 将`Read.js`文件所在目录下的 **`error.txt`** 文件备份，并修改名字为`error + num.txt`，与结果文件对应。
-6. 重复以上步骤，直至所有切片文件爬取完成。
-7. 将error文件夹中所有的`error + num.txt`文件合并，再次重复上述步骤，即可完成爬取。
+5. 将 **`.\pathResult`** 文件夹中的结果文件**备份**。
+6. 将`Read.js`文件所在目录下的 **`error.txt`** 文件备份，并修改名字为`error + num.txt`，与结果文件对应。
+7. 重复以上步骤，直至所有切片文件爬取完成。
+8. 将error文件夹中所有的`error + num.txt`文件合并，再次重复上述步骤，即可完成爬取。

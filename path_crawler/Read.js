@@ -50,7 +50,7 @@ let pathAnalysis = (readFileName, writeFileName) => {
 
 
 // 运行前修改此处路径
-pathAnalysis('./combination/combination35.txt', './pathResult/path35.txt');
+pathAnalysis('./combination_files/combination35.txt', './path_results/path35.txt');
 
 // 爬取路径方法
 let fetchUrl = (writeStream, elements, callback) => {
