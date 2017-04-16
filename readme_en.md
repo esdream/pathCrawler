@@ -12,7 +12,7 @@
 
 ### Preprocessing
 
-1. Format your data in Excel as follows:
+1. Format your origin data and destination data in Excel as follows:
 
    | Name of origin or destination | X coordinate | Y coordinate | Other columns |
    | ----------------------------- | ------------ | ------------ | ------------- |
@@ -28,7 +28,7 @@
 
 ### Combination of Data
 
-Configure and run the **Combination.js** to combine the origin data and the destination data.
+Configure and run the **Combination.js** to combine origin data with destination data.
 
 1. Configure **line 6 to 10** of `combination.js` to add your origin data
 
@@ -48,9 +48,9 @@ Configure and run the **Combination.js** to combine the origin data and the dest
    });
    ```
 
-3. Every line of data is stored in the array `elements` . The subscript `n` means the number n attribution value of every line of data.  You can configure it to make the program can read your data correctly. In **line 25 to 29** you can change the `n` of origin data, and in **line 37 to 39** you can change the `n` of destination data.
+3. Options: every line of data is stored in the array `elements` . The subscript `n` means the number n attribution value of every line of data.  You can configure it to make the program can read your data correctly. In **line 25 to 29** you can change the `n` of origin data, and in **line 37 to 39** you can change the `n` of destination data.
 
-4. Run `combination.js`: **right click** in the directory `./path_crawler` and choose the `git bash here`, then run:
+4. Run `combination.js`: **right click** in the directory `./path_crawler` and choose `git bash here`, then run:
 
    ```bash
    node combination.js
@@ -60,9 +60,9 @@ Configure and run the **Combination.js** to combine the origin data and the dest
 
 ---
 
-### Crawler Path Data
+### Crawl Path Data
 
-Configure and run the **Read.js** to crawler path data from **Baidu Map API**.
+Configure and run the **Read.js** to crawl path data from **Baidu Map API**.
 
 1. Configure **line 62 and line 89** of `Read.js` to change the transit mode, including driving, walking, transit and riding.
 
@@ -91,10 +91,18 @@ Configure and run the **Read.js** to crawler path data from **Baidu Map API**.
    ak: 'dOaspTMmxaxRBGDHFApy8pdvnvCGzuX3'
    ```
 
-4. Run `Read.js`: **right click** in the directory `./path_crawler` and choose the `git bash here`, then run:
+4. Run `Read.js`: **right click** in the directory `./path_crawler` and choose `git bash here`, then run:
 
    ```bash
    node Read.js
    ```
 
-   Then the program will running and output the result to directory `./path_results`.
+   Then the program will run and output the result to directory `./path_results`.
+
+5. The output data will be format as follows splited in **\t(tab)**:
+
+   | Num of origin | Num of destination | ID   | time(second) | distance(kilometer) | transit mode | path(x, y) |
+   | ------------- | ------------------ | ---- | ------------ | ------------------- | ------------ | ---------- |
+   |               |                    |      |              |                     |              |            |
+
+   ​
